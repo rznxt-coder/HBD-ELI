@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relena's Gallery - Happy 16th Birthday!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            background: linear-gradient(135deg, #a8e6a3, #56ab2f);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating balloons */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.7;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background: #ff6b6b;
+        }
+
+        .balloon:nth-child(2) {
+            background: #4ecdc4;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(3) {
+            background: #ffe66d;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .balloon:nth-child(4) {
+            background: #ff6b6b;
+            left: 30%;
+            animation-delay: 6s;
+        }
+
+        .balloon:nth-child(5) {
+            background: #4ecdc4;
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(6) {
+            background: #ffe66d;
+            left: 80%;
+            animation-delay: 3s;
+        }
+
+        .balloon:nth-child(7) {
+            background: #ff6b6b;
+            left: 90%;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            z-index: 1000;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .sidebar:hover {
+            width: 250px;
+        }
+
+        .sidebar .logo {
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .sidebar .logo h2 {
+            font-size: 1.2rem;
+            color: #2E7D32;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .logo h2 {
+            opacity: 1;
+        }
+
+        .sidebar .nav-links {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar .nav-links li {
+            padding: 15px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .nav-links li:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .sidebar .nav-links li a {
+            text-decoration: none;
+            color: #555;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            white-space: nowrap;
+        }
+
+        .sidebar .nav-links li a i {
+            font-size: 1.5rem;
+            margin-right: 20px;
+            color: #2E7D32;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .sidebar .nav-links li a span {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .nav-links li a span {
+            opacity: 1;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 80px;
+            padding: 40px;
+            transition: margin-left 0.5s ease;
+        }
+
+        .sidebar:hover ~ .main-content {
+            margin-left: 250px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: #2E7D32;
+            border-radius: 5px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: #1B5E20;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #2E7D32, transparent);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #2E7D32;
+            margin-top: 20px;
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            margin: 30px 0;
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            color: #1B5E20;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+        }
+
+        .gallery-section h2::before, .gallery-section h2::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background: #2E7D32;
+        }
+
+        .gallery-section h2::before {
+            left: -60px;
+        }
+
+        .gallery-section h2::after {
+            right: -60px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            aspect-ratio: 1 / 1;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Back to Home Button */
+        .back-home {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .back-home a {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2E7D32;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .back-home a:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-home a i {
+            margin-right: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+            }
+            
+            .sidebar:hover {
+                width: 200px;
+            }
+            
+            .main-content {
+                margin-left: 70px;
+                padding: 20px;
+            }
+            
+            .sidebar:hover ~ .main-content {
+                margin-left: 200px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .gallery-section h2::before, .gallery-section h2::after {
+                width: 30px;
+            }
+            
+            .gallery-section h2::before {
+                left: -40px;
+            }
+            
+            .gallery-section h2::after {
+                right: -40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Balloons -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <div class="container">
+        <!-- Animated Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Happy Birthday!</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="gallery.html" style="background: rgba(76, 175, 80, 0.1);">
+                        <i class="fas fa-images"></i>
+                        <span>Gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="wishes.html">
+                        <i class="fas fa-heart"></i>
+                        <span>Wishes</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Relena's Gallery</h1>
+                <p>A collection of beautiful moments and memories</p>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="gallery-section">
+                <h2>Special Memories</h2>
+                <div class="gallery-grid">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item">
+                        <img src="gallery1.jpg" alt="Relena's photo 1">
+                        <div class="gallery-overlay">
+                            <h3>Beautiful Smile</h3>
+                            <p>That smile that brightens my day</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item">
+                        <img src="gallery2.jpg" alt="Relena's photo 2">
+                        <div class="gallery-overlay">
+                            <h3>Sweet Sixteen</h3>
+                            <p>Celebrating this special milestone</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item">
+                        <img src="gallery3.jpg" alt="Relena's photo 3">
+                        <div class="gallery-overlay">
+                            <h3>Adventures Together</h3>
+                            <p>Creating memories that last forever</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-item">
+                        <img src="gallery4.jpg" alt="Relena's photo 4">
+                        <div class="gallery-overlay">
+                            <h3>Natural Beauty</h3>
+                            <p>Your inner and outer beauty shines through</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 5 -->
+                    <div class="gallery-item">
+                        <img src="gallery5.jpg" alt="Relena's photo 5">
+                        <div class="gallery-overlay">
+                            <h3>Happy Moments</h3>
+                            <p>Capturing your joy and laughter</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 6 -->
+                    <div class="gallery-item">
+                        <img src="gallery6.jpg" alt="Relena's photo 6">
+                        <div class="gallery-overlay">
+                            <h3>Special Day</h3>
+                            <p>Your 16th birthday celebration</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 7 -->
+                    <div class="gallery-item">
+                        <img src="gallery7.jpg" alt="Relena's photo 7">
+                        <div class="gallery-overlay">
+                            <h3>Friends Forever</h3>
+                            <p>With the people who matter most</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 8 -->
+                    <div class="gallery-item">
+                        <img src="gallery8.jpg" alt="Relena's photo 8">
+                        <div class="gallery-overlay">
+                            <h3>Growing Up</h3>
+                            <p>From little girl to amazing young woman</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 9 -->
+                    <div class="gallery-item">
+                        <img src="gallery9.jpg" alt="Relena's photo 9">
+                        <div class="gallery-overlay">
+                            <h3>Pure Happiness</h3>
+                            <p>Your laughter is contagious</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 10 -->
+                    <div class="gallery-item">
+                        <img src="gallery10.jpg" alt="Relena's photo 10">
+                        <div class="gallery-overlay">
+                            <h3>Birthday Girl</h3>
+                            <p>The star of the celebration</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 11 -->
+                    <div class="gallery-item">
+                        <img src="gallery11.jpg" alt="Relena's photo 11">
+                        <div class="gallery-overlay">
+                            <h3>Sweet Memories</h3>
+                            <p>Moments I'll always cherish</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 12 -->
+                    <div class="gallery-item">
+                        <img src="gallery12.jpg" alt="Relena's photo 12">
+                        <div class="gallery-overlay">
+                            <h3>Beautiful Soul</h3>
+                            <p>Inside and out, you're amazing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Home Button -->
+            <div class="back-home">
+                <a href="index.html">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for gallery items on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach((item, index) => {
+                // Stagger the animation
+                setTimeout(() => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

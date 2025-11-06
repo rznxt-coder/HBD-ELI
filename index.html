@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 16th Birthday Relena!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            background: linear-gradient(135deg, #a8e6a3, #56ab2f);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating balloons */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.7;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background: #ff6b6b;
+        }
+
+        .balloon:nth-child(2) {
+            background: #4ecdc4;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(3) {
+            background: #ffe66d;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .balloon:nth-child(4) {
+            background: #ff6b6b;
+            left: 30%;
+            animation-delay: 6s;
+        }
+
+        .balloon:nth-child(5) {
+            background: #4ecdc4;
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(6) {
+            background: #ffe66d;
+            left: 80%;
+            animation-delay: 3s;
+        }
+
+        .balloon:nth-child(7) {
+            background: #ff6b6b;
+            left: 90%;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Floating Sidebar Styles */
+        .sidebar {
+            width: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            height: auto;
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sidebar:hover {
+            width: 180px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.02);
+        }
+
+        .sidebar .logo {
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .sidebar .logo h2 {
+            font-size: 1rem;
+            color: #2E7D32;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .logo h2 {
+            opacity: 1;
+        }
+
+        .sidebar .nav-links {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .sidebar .nav-links li {
+            padding: 12px 0;
+            position: relative;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sidebar .nav-links li:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .sidebar .nav-links li a {
+            text-decoration: none;
+            color: #555;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            white-space: nowrap;
+            width: 100%;
+            justify-content: flex-start;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .nav-links li a:hover {
+            background: rgba(76, 175, 80, 0.1);
+            transform: translateX(5px);
+        }
+
+        .sidebar .nav-links li a i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #2E7D32;
+            min-width: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar .nav-links li a:hover i {
+            transform: scale(1.1);
+        }
+
+        .sidebar .nav-links li a span {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .nav-links li a span {
+            opacity: 1;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 0;
+            padding: 40px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: #2E7D32;
+            border-radius: 5px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: #1B5E20;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #2E7D32, transparent);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #2E7D32;
+            margin-top: 20px;
+        }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: 0 auto 50px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 5px solid white;
+        }
+
+        .slides {
+            display: none;
+            position: relative;
+        }
+
+        .slides img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .slide-text {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px;
+            color: #2E7D32;
+            font-weight: bold;
+            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: 0.4}
+            to {opacity: 1}
+        }
+
+        /* Birthday Message */
+        .birthday-message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            border-left: 5px solid #2E7D32;
+        }
+
+        .birthday-message::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #2E7D32;
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .birthday-message h2 {
+            color: #2E7D32;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(46, 125, 50, 0.1);
+            border-radius: 30px;
+        }
+
+        .birthday-message p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            margin: 50px 0;
+        }
+
+        .video-section h2 {
+            text-align: center;
+            color: #1B5E20;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+        }
+
+        .video-section h2::before, .video-section h2::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background: #2E7D32;
+        }
+
+        .video-section h2::before {
+            left: -60px;
+        }
+
+        .video-section h2::after {
+            right: -60px;
+        }
+
+        .videos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffe66d, #2E7D32);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-container:hover::before {
+            opacity: 0.3;
+        }
+
+        .video-container.left {
+            flex-direction: row-reverse;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .video-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffe66d);
+            z-index: 1;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-text {
+            padding: 20px;
+            text-align: center;
+            color: #2E7D32;
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .message-container {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            position: relative;
+            border-top: 5px solid #2E7D32;
+        }
+
+        .message-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 10px;
+            background: #2E7D32;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .message-container h3 {
+            color: #2E7D32;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-container h3 i {
+            margin-right: 10px;
+            background: rgba(46, 125, 50, 0.1);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .message-container p {
+            line-height: 1.6;
+            color: #555;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            max-width: 350px;
+        }
+
+        .music-player:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: #2E7D32;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            color: #1B5E20;
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            margin-left: 15px;
+            max-width: 200px;
+        }
+
+        .music-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2E7D32;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .music-artist {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .playlist-btn {
+            margin-left: 10px;
+            background: none;
+            border: none;
+            color: #2E7D32;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .playlist {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+            backdrop-filter: blur(10px);
+        }
+
+        .playlist.show {
+            display: block;
+        }
+
+        .playlist-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .playlist-item:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .playlist-item.active {
+            background: rgba(46, 125, 50, 0.1);
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .playlist-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .sidebar:hover {
+                width: 150px;
+                transform: translateY(-50%) scale(1.02);
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .video-container {
+                flex-direction: column;
+            }
+            
+            .video-card video {
+                height: 250px;
+            }
+            
+            .video-text {
+                font-size: 1.1rem;
+            }
+            
+            .message-container {
+                max-width: 100%;
+            }
+            
+            .video-section h2::before, .video-section h2::after {
+                width: 30px;
+            }
+            
+            .video-section h2::before {
+                left: -40px;
+            }
+            
+            .video-section h2::after {
+                right: -40px;
+            }
+            
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+            
+            .playlist {
+                right: 0;
+                left: 0;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Balloons -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <div class="container">
+        <!-- Floating Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>For my Eli</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="gallery.html">
+                        <i class="fas fa-images"></i>
+                        <span>Gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="wishes.html">
+                        <i class="fas fa-heart"></i>
+                        <span>Wishes</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Happy 16th Birthday, Relena!</h1>
+                <p>Welcome to your special birthday website!</p>
+            </div>
+
+            <!-- Photo Slideshow -->
+            <div class="slideshow-container">
+                <div class="slides fade">
+                    <img src="relena1.jpg" alt="Relena's photo 1">
+                    <div class="slide-text">Beautiful on your special day!</div>
+                </div>
+
+                <div class="slides fade">
+                    <img src="relena2.jpg" alt="Relena's photo 2">
+                    <div class="slide-text">16 looks amazing on you!</div>
+                </div>
+
+                <div class="slides fade">
+                    <img src="relena3.jpg" alt="Relena's photo 3">
+                    <div class="slide-text">Celebrating your sweet sixteen!</div>
+                </div>
+
+                <div class="slides fade">
+                    <img src="relena4.jpg" alt="Relena's photo 4">
+                    <div class="slide-text">Happy Birthday Relena!</div>
+                </div>
+            </div>
+
+            <!-- Birthday Message -->
+            <div class="birthday-message">
+                <h2>To my Sweet Eli!</h2>
+                <p>Happy Sweet Sixteen! Today marks a special milestone in your life as you turn 16. This is the beginning of an exciting new chapter filled with endless possibilities, dreams to chase, and memories to create.</p>
+                <p>May this year bring you joy, laughter, and all the happiness you deserve. You're an incredible person with a bright future ahead. Embrace every moment and make this year unforgettable!</p>
+                <p>And from this day onward I'm now here for you whenever you need me. I'll always have time for you so don't be afraid to reach out to me.</p>
+                <p>Wishing you the most wonderful birthday filled with love, laughter, and everything that makes you smile!</p>
+                <p>Yours truly, - Vincent ❤️</p>
+            </div>
+
+            <!-- Video Section -->
+            <div class="video-section">
+                <h2>Your Moments</h2>
+                <div class="videos">
+                    <!-- First Video - Message on the right -->
+                    <div class="video-container">
+                        <div class="video-card">
+                            <video controls>
+                                <source src="video1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-text">Beautiful</div>
+                        </div>
+                        <div class="message-container">
+                            <h3><i class="fas fa-heart"></i> Special Day</h3>
+                            <p>You look so happy and carefree, and it's a side of you that I absolutely adore. Your smile lights up the room, and your laughter is contagious. I hope you always remember how special you are to so many people, especially to me.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Second Video - Message on the left -->
+                    <div class="video-container left">
+                        <div class="video-card">
+                            <video controls>
+                                <source src="video2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-text">Adorable</div>
+                        </div>
+                        <div class="message-container">
+                            <h3><i class="fas fa-star"></i> You're Growing</h3>
+                            <p>I'm so proud of the person you've become and can't wait to see what the future holds for you. I'll also wait for the day that you'll come to accept me ;)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Third Video - Message on the right -->
+                    <div class="video-container">
+                        <div class="video-card">
+                            <video controls>
+                                <source src="video3.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-text">Wholesome</div>
+                        </div>
+                        <div class="message-container">
+                            <h3><i class="fas fa-birthday-cake"></i> Celebration Time</h3>
+                            <p>Today is your birthday celebration you'll come to realize just how loved you are by everyone around you. To celebrate your day ahead of you keep your chin up and stand up proud! </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-controls">
+            <button class="music-btn" id="prev-btn">
+                <i class="fas fa-step-backward"></i>
+            </button>
+            <button class="music-btn" id="play-pause-btn">
+                <i class="fas fa-play"></i>
+            </button>
+            <button class="music-btn" id="next-btn">
+                <i class="fas fa-step-forward"></i>
+            </button>
+        </div>
+        <div class="music-info">
+            <div class="music-title" id="current-song">Click play to start music</div>
+            <div class="music-artist" id="current-artist">Birthday Playlist</div>
+        </div>
+        <button class="playlist-btn" id="playlist-toggle">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="playlist" id="playlist">
+            <!-- Playlist items will be added here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audio-player" loop></audio>
+
+    <script>
+        // Music Player Functionality
+        const audioPlayer = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const playlistToggle = document.getElementById('playlist-toggle');
+        const playlist = document.getElementById('playlist');
+        const currentSongElement = document.getElementById('current-song');
+        const currentArtistElement = document.getElementById('current-artist');
+
+        // Playlist - Replace these with your actual MP3 files
+        const playlistSongs = [
+            {
+                title: "Secret Love Song",
+                artist: "Little Mix",
+                src: "secret.mp3" // Replace with your MP3 file
+            },
+            {
+                title: "I Like You So Much",
+                artist: "Ysabelle Cuevas",
+                src: "like.mp3" // Replace with your MP3 file
+            },
+            {
+                title: "From The Ground Up",
+                artist: "Dan & Shay",
+                src: "ground.mp3" // Replace with your MP3 file
+            }
+        ];
+
+        let currentSongIndex = 0;
+        let isPlaying = false;
+
+        // Initialize playlist
+        function initializePlaylist() {
+            playlist.innerHTML = '';
+            playlistSongs.forEach((song, index) => {
+                const playlistItem = document.createElement('div');
+                playlistItem.className = 'playlist-item';
+                if (index === currentSongIndex) {
+                    playlistItem.classList.add('active');
+                }
+                playlistItem.innerHTML = `
+                    <div>${song.title}</div>
+                    <div style="font-size: 0.7rem; color: #888;">${song.artist}</div>
+                `;
+                playlistItem.addEventListener('click', () => {
+                    playSong(index);
+                });
+                playlist.appendChild(playlistItem);
+            });
+            
+            // Load the first song
+            loadSong(currentSongIndex);
+        }
+
+        // Load a song
+        function loadSong(index) {
+            const song = playlistSongs[index];
+            audioPlayer.src = song.src;
+            currentSongElement.textContent = song.title;
+            currentArtistElement.textContent = song.artist;
+            
+            // Update active item in playlist
+            document.querySelectorAll('.playlist-item').forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // Play a song
+        function playSong(index) {
+            if (index !== currentSongIndex) {
+                currentSongIndex = index;
+                loadSong(currentSongIndex);
+            }
+            
+            audioPlayer.play()
+                .then(() => {
+                    isPlaying = true;
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                })
+                .catch(error => {
+                    console.log("Autoplay prevented:", error);
+                    currentSongElement.textContent = "Click play to start music";
+                });
+        }
+
+        // Toggle play/pause
+        function togglePlayPause() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                audioPlayer.play()
+                    .then(() => {
+                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    })
+                    .catch(error => {
+                        console.log("Play failed:", error);
+                        // If autoplay is blocked, load the first song and try again
+                        if (currentSongIndex === 0) {
+                            loadSong(0);
+                        }
+                    });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Play next song
+        function playNextSong() {
+            currentSongIndex = (currentSongIndex + 1) % playlistSongs.length;
+            playSong(currentSongIndex);
+        }
+
+        // Play previous song
+        function playPreviousSong() {
+            currentSongIndex = (currentSongIndex - 1 + playlistSongs.length) % playlistSongs.length;
+            playSong(currentSongIndex);
+        }
+
+        // Event listeners
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        nextBtn.addEventListener('click', playNextSong);
+        prevBtn.addEventListener('click', playPreviousSong);
+        playlistToggle.addEventListener('click', () => {
+            playlist.classList.toggle('show');
+        });
+
+        // When a song ends, play the next one
+        audioPlayer.addEventListener('ended', playNextSong);
+
+        // Close playlist when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.music-player')) {
+                playlist.classList.remove('show');
+            }
+        });
+
+        // Initialize the music player
+        initializePlaylist();
+
+        // Slideshow functionality
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slides");
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 4000); // Change image every 4 seconds
+        }
+    </script>
+</body>
+</html>

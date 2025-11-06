@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relena's Gallery - Happy 16th Birthday!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            background: linear-gradient(135deg, #a8e6a3, #56ab2f);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating balloons */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.7;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background: #ff6b6b;
+        }
+
+        .balloon:nth-child(2) {
+            background: #4ecdc4;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(3) {
+            background: #ffe66d;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .balloon:nth-child(4) {
+            background: #ff6b6b;
+            left: 30%;
+            animation-delay: 6s;
+        }
+
+        .balloon:nth-child(5) {
+            background: #4ecdc4;
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(6) {
+            background: #ffe66d;
+            left: 80%;
+            animation-delay: 3s;
+        }
+
+        .balloon:nth-child(7) {
+            background: #ff6b6b;
+            left: 90%;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Floating Sidebar Styles */
+        .sidebar {
+            width: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            height: auto;
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sidebar:hover {
+            width: 180px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.02);
+        }
+
+        .sidebar .logo {
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .sidebar .logo h2 {
+            font-size: 1rem;
+            color: #2E7D32;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .logo h2 {
+            opacity: 1;
+        }
+
+        .sidebar .nav-links {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .sidebar .nav-links li {
+            padding: 12px 0;
+            position: relative;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sidebar .nav-links li:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .sidebar .nav-links li a {
+            text-decoration: none;
+            color: #555;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            white-space: nowrap;
+            width: 100%;
+            justify-content: flex-start;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .nav-links li a:hover {
+            background: rgba(76, 175, 80, 0.1);
+            transform: translateX(5px);
+        }
+
+        .sidebar .nav-links li a i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #2E7D32;
+            min-width: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar .nav-links li a:hover i {
+            transform: scale(1.1);
+        }
+
+        .sidebar .nav-links li a span {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .nav-links li a span {
+            opacity: 1;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 0;
+            padding: 40px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: #2E7D32;
+            border-radius: 5px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: #1B5E20;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #2E7D32, transparent);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #2E7D32;
+            margin-top: 20px;
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            margin: 30px 0;
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            color: #1B5E20;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+        }
+
+        .gallery-section h2::before, .gallery-section h2::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background: #2E7D32;
+        }
+
+        .gallery-section h2::before {
+            left: -60px;
+        }
+
+        .gallery-section h2::after {
+            right: -60px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            aspect-ratio: 1 / 1;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Back to Home Button */
+        .back-home {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .back-home a {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2E7D32;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .back-home a:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-home a i {
+            margin-right: 10px;
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            max-width: 350px;
+        }
+
+        .music-player:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: #2E7D32;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            color: #1B5E20;
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            margin-left: 15px;
+            max-width: 200px;
+        }
+
+        .music-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2E7D32;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .music-artist {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .playlist-btn {
+            margin-left: 10px;
+            background: none;
+            border: none;
+            color: #2E7D32;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .playlist {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+            backdrop-filter: blur(10px);
+        }
+
+        .playlist.show {
+            display: block;
+        }
+
+        .playlist-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .playlist-item:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .playlist-item.active {
+            background: rgba(46, 125, 50, 0.1);
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .playlist-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .sidebar:hover {
+                width: 150px;
+                transform: translateY(-50%) scale(1.02);
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .gallery-section h2::before, .gallery-section h2::after {
+                width: 30px;
+            }
+            
+            .gallery-section h2::before {
+                left: -40px;
+            }
+            
+            .gallery-section h2::after {
+                right: -40px;
+            }
+            
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+            
+            .playlist {
+                right: 0;
+                left: 0;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Balloons -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <div class="container">
+        <!-- Floating Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>For my Eli</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="gallery.html" style="background: rgba(76, 175, 80, 0.1);">
+                        <i class="fas fa-images"></i>
+                        <span>Gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="wishes.html">
+                        <i class="fas fa-heart"></i>
+                        <span>Wishes</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Relena's Gallery</h1>
+                <p>A collection of beautiful moments and memories</p>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="gallery-section">
+                <h2>Special Memories</h2>
+                <div class="gallery-grid">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item">
+                        <img src="gallery1.jpg" alt="Relena's photo 1">
+                        <div class="gallery-overlay">
+                            <h3>Beautiful Smile</h3>
+                            <p>That smile that brightens my day</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item">
+                        <img src="gallery2.jpg" alt="Relena's photo 2">
+                        <div class="gallery-overlay">
+                            <h3>Sweet Sixteen</h3>
+                            <p>Celebrating this special milestone</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item">
+                        <img src="gallery3.jpg" alt="Relena's photo 3">
+                        <div class="gallery-overlay">
+                            <h3>Such Cuteness</h3>
+                            <p>Your cuteness is overwhelming</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-item">
+                        <img src="gallery4.jpg" alt="Relena's photo 4">
+                        <div class="gallery-overlay">
+                            <h3>Natural Beauty</h3>
+                            <p>Your inner and outer beauty shines through</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 5 -->
+                    <div class="gallery-item">
+                        <img src="gallery5.jpg" alt="Relena's photo 5">
+                        <div class="gallery-overlay">
+                            <h3>Happy Moments</h3>
+                            <p>Even hidden behind the mask you still have that beautiful eyes of yours</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 6 -->
+                    <div class="gallery-item">
+                        <img src="gallery6.jpg" alt="Relena's photo 6">
+                        <div class="gallery-overlay">
+                            <h3>Special Day</h3>
+                            <p>Your 16th birthday celebration</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 7 -->
+                    <div class="gallery-item">
+                        <img src="gallery7.jpg" alt="Relena's photo 7">
+                        <div class="gallery-overlay">
+                            <h3>Lovable</h3>
+                            <p>With the people who matter most</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 8 -->
+                    <div class="gallery-item">
+                        <img src="gallery8.jpg" alt="Relena's photo 8">
+                        <div class="gallery-overlay">
+                            <h3>Growing Up</h3>
+                            <p>From little girl to amazing young woman</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 9 -->
+                    <div class="gallery-item">
+                        <img src="gallery9.jpg" alt="Relena's photo 9">
+                        <div class="gallery-overlay">
+                            <h3>Pure Happiness</h3>
+                            <p>The look on your eyes gave it away</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 10 -->
+                    <div class="gallery-item">
+                        <img src="gallery10.jpg" alt="Relena's photo 10">
+                        <div class="gallery-overlay">
+                            <h3>Birthday Girl</h3>
+                            <p>The star of the celebration</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 11 -->
+                    <div class="gallery-item">
+                        <img src="gallery11.jpg" alt="Relena's photo 11">
+                        <div class="gallery-overlay">
+                            <h3>Sweet Memories</h3>
+                            <p>Moments you'll always cherish</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Item 12 -->
+                    <div class="gallery-item">
+                        <img src="gallery12.jpg" alt="Relena's photo 12">
+                        <div class="gallery-overlay">
+                            <h3>Beautiful Soul</h3>
+                            <p>Inside and out, you're amazing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Home Button -->
+            <div class="back-home">
+                <a href="index.html">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-controls">
+            <button class="music-btn" id="prev-btn">
+                <i class="fas fa-step-backward"></i>
+            </button>
+            <button class="music-btn" id="play-pause-btn">
+                <i class="fas fa-play"></i>
+            </button>
+            <button class="music-btn" id="next-btn">
+                <i class="fas fa-step-forward"></i>
+            </button>
+        </div>
+        <div class="music-info">
+            <div class="music-title" id="current-song">Click play to start music</div>
+            <div class="music-artist" id="current-artist">Birthday Playlist</div>
+        </div>
+        <button class="playlist-btn" id="playlist-toggle">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="playlist" id="playlist">
+            <!-- Playlist items will be added here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audio-player" loop></audio>
+
+    <script>
+        // Simple animation for gallery items on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach((item, index) => {
+                // Stagger the animation
+                setTimeout(() => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 100);
+            });
+        });
+
+        // Music Player Functionality
+        const audioPlayer = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const playlistToggle = document.getElementById('playlist-toggle');
+        const playlist = document.getElementById('playlist');
+        const currentSongElement = document.getElementById('current-song');
+        const currentArtistElement = document.getElementById('current-artist');
+
+        // Playlist - Replace these with your actual MP3 files
+        const playlistSongs = [
+            {
+                title: "Secret Love Song",
+                artist: "Little Mix",
+                src: "secret.mp3" // Replace with your MP3 file
+            },
+            {
+                title: "I Like You So Much",
+                artist: "Ysabelle Cuevas",
+                src: "like.mp3" // Replace with your MP3 file
+            },
+            {
+                title: "From The Ground Up",
+                artist: "Dan & Shay",
+                src: "ground.mp3" // Replace with your MP3 file
+            }
+        ];
+
+        let currentSongIndex = 0;
+        let isPlaying = false;
+
+        // Initialize playlist
+        function initializePlaylist() {
+            playlist.innerHTML = '';
+            playlistSongs.forEach((song, index) => {
+                const playlistItem = document.createElement('div');
+                playlistItem.className = 'playlist-item';
+                if (index === currentSongIndex) {
+                    playlistItem.classList.add('active');
+                }
+                playlistItem.innerHTML = `
+                    <div>${song.title}</div>
+                    <div style="font-size: 0.7rem; color: #888;">${song.artist}</div>
+                `;
+                playlistItem.addEventListener('click', () => {
+                    playSong(index);
+                });
+                playlist.appendChild(playlistItem);
+            });
+            
+            // Load the first song
+            loadSong(currentSongIndex);
+        }
+
+        // Load a song
+        function loadSong(index) {
+            const song = playlistSongs[index];
+            audioPlayer.src = song.src;
+            currentSongElement.textContent = song.title;
+            currentArtistElement.textContent = song.artist;
+            
+            // Update active item in playlist
+            document.querySelectorAll('.playlist-item').forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // Play a song
+        function playSong(index) {
+            if (index !== currentSongIndex) {
+                currentSongIndex = index;
+                loadSong(currentSongIndex);
+            }
+            
+            audioPlayer.play()
+                .then(() => {
+                    isPlaying = true;
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                })
+                .catch(error => {
+                    console.log("Autoplay prevented:", error);
+                    currentSongElement.textContent = "Click play to start music";
+                });
+        }
+
+        // Toggle play/pause
+        function togglePlayPause() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                audioPlayer.play()
+                    .then(() => {
+                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    })
+                    .catch(error => {
+                        console.log("Play failed:", error);
+                        // If autoplay is blocked, load the first song and try again
+                        if (currentSongIndex === 0) {
+                            loadSong(0);
+                        }
+                    });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Play next song
+        function playNextSong() {
+            currentSongIndex = (currentSongIndex + 1) % playlistSongs.length;
+            playSong(currentSongIndex);
+        }
+
+        // Play previous song
+        function playPreviousSong() {
+            currentSongIndex = (currentSongIndex - 1 + playlistSongs.length) % playlistSongs.length;
+            playSong(currentSongIndex);
+        }
+
+        // Event listeners
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        nextBtn.addEventListener('click', playNextSong);
+        prevBtn.addEventListener('click', playPreviousSong);
+        playlistToggle.addEventListener('click', () => {
+            playlist.classList.toggle('show');
+        });
+
+        // When a song ends, play the next one
+        audioPlayer.addEventListener('ended', playNextSong);
+
+        // Close playlist when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.music-player')) {
+                playlist.classList.remove('show');
+            }
+        });
+
+        // Initialize the music player
+        initializePlaylist();
+    </script>
+</body>
+</html>
